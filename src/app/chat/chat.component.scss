@@ -50,6 +50,8 @@ $bgColor: #edeef0;
 }
 
 .inputForm { 
+    display: flex;
+    align-items: center;
     border: solid 2px $bgColor;
     border-radius: 4px;
     margin-top: 10px;

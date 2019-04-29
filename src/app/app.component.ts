@@ -20,7 +20,7 @@ export class AppComponent {
   constructor(Service: AppService, Router: Router) {
     this._AppService = Service;
     this._router = Router;
-    // подписываемся на сообщения
+
     this.subscription = this._AppService.getCurrUser()
       .subscribe(currUserName => { this.currentUser = currUserName; });
   }
