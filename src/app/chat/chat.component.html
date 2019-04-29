@@ -1,0 +1,29 @@
+<div class="chat">
+  <div class="messagesBlock">
+    <div
+      *ngFor="let mess of myMessages; let i = index" 
+      [ngClass]="{
+        'message': true,
+        '--currentUser': mess.author.name === currentUser.name
+      }"
+    >
+      <div class="message__authorName" *ngIf="i==0 && mess.author.name!=currentUser.name">
+        {{mess.author.name}}
+      </div>
+      <div class="message__authorName" *ngIf="i!=0 && mess.author.name!=currentUser.name && myMessages[i-1].author.name != mess.author.name ">
+        {{mess.author.name}}
+      </div>
+      <div class="message__bubble">
+        {{mess.text}}
+      </div>
+    </div>
+  </div>
+  <form class="inputForm">
+    <mat-form-field class="inputForm__input">
+      <input matInput [(ngModel)]="message.text" name="name" type="text" placeholder="Введите сообщение">
+    </mat-form-field>
+    <button mat-icon-button color="accent" (click)="submitHandler($event)" type="submit">
+      <mat-icon class="inputForm__button">send</mat-icon>
+    </button> 
+  </form>
+</div>
