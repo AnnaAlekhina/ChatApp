@@ -41,16 +41,12 @@ export class AppService {
     var foundUser = this.users.find(elem => elem.name == newUser.name);
     if (!foundUser) {
         this.users.push(newUser);
-        console.log("всё ок!");
         this.currentUser = newUser;
     }
     else {
-        console.log("Повторение!");
         this.currentUser = foundUser;
     }
     this.saveUsers();
-    console.log(this.users)
-    console.log(this.currentUser)
   }
 
   saveUsers() {
@@ -63,7 +59,6 @@ export class AppService {
     else{
       this.messages.push(newMessage);
       this.saveMessages();
-      console.log(this.messages)
     }
   }
 
