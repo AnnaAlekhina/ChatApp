@@ -1,0 +1,11 @@
+<form class="loginForm" (submit)="submitHandler($event)">
+  <div class="loginForm__headline">
+    <div class="mat-headline"> Авторизация</div>
+  </div>
+  <div class="inputContainer">
+    <mat-form-field>
+      <input matInput [(ngModel)]="user.name" name="name" placeholder="Введите имя">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Войти</button>
+  </div>
+</form> 

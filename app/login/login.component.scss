@@ -1,0 +1,25 @@
+$bgColor: #edeef0;
+
+.loginForm {
+  text-align: center; 
+}
+
+.loginForm__headline {
+  padding-top: 30px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    padding:  70px 40px 60px 40px ;
+    background-color: white;
+    border: solid 2px $bgColor;
+    border-radius: 4px;
+    transition: 0.6s;
+    margin: auto;
+  }
+ 
+  .inputContainer:hover {
+    background-color: $bgColor;
+  }

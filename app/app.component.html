@@ -1,0 +1,7 @@
+<header *ngIf="currentUser" class="header">
+      <h2>Пользователь: {{currentUser.name}}</h2>
+      <button mat-raised-button (click)="clickHandlerExit()" color="accent" type="submit">Выход</button>
+</header> 
+<div class="homePage">
+      <router-outlet></router-outlet>
+</div>
