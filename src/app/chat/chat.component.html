@@ -13,17 +13,26 @@
       <div class="message__authorName" *ngIf="i!=0 && mess.author.name!=currentUser.name && myMessages[i-1].author.name != mess.author.name ">
         {{mess.author.name}}
       </div>
-      <div class="message__bubble">
+      <div class="message__bubble" *ngIf="mess.author.name === currentUser.name">
         {{mess.text}}
+        <button mat-icon-button class="message__deleteButton" color="accent" (click)="clickDeleteHandler(i)" type="submit">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button mat-icon-button class="message__deleteButton" color="accent" (click)="clickEditHandler(i)" type="submit">
+            <mat-icon>create</mat-icon>
+        </button>
       </div>
+      <div class="message__bubble" *ngIf="mess.author.name != currentUser.name">
+          {{mess.text}}
+        </div>
     </div>
   </div>
   <form class="inputForm">
     <mat-form-field class="inputForm__input">
       <input matInput [(ngModel)]="message.text" name="name" type="text" placeholder="Введите сообщение">
     </mat-form-field>
-    <button mat-icon-button color="accent" (click)="submitHandler($event)" type="submit">
-      <mat-icon class="inputForm__button">send</mat-icon>
+    <button mat-icon-button class="inputForm__button" color="accent" (click)="submitSendHandler($event)" type="submit">
+      <mat-icon>send</mat-icon>
     </button> 
   </form>
 </div>

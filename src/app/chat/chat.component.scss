@@ -59,10 +59,33 @@ $bgColor: #edeef0;
     margin: auto;
 }
 
-.inputForm__button {
-    font-size: 35px;
-}
+.mat-icon-button.inputForm__button {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+
+    .mat-icon {
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
 
 .inputForm__input {
-    width: 90%; 
+    width: 100%; 
+    padding:10px;
 }
+
+.mat-icon-button.message__deleteButton {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+
+    .mat-icon {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+    }
+  }

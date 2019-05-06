@@ -7,6 +7,7 @@ export class AppService {
   private currentUser: User = null;
   private messages: Message[] = [];
   private subject = null;
+  private subjectMessages = null;
 
   constructor() {
     const usersParsed = JSON.parse(localStorage.getItem('users'));
@@ -18,22 +19,19 @@ export class AppService {
 
     const messagesParsed = JSON.parse(localStorage.getItem('messages'));
     this.messages = messagesParsed ? messagesParsed : [];
+    this.subjectMessages = new BehaviorSubject<Message[]>(this.messages);
   }
   
   public sendCurrUser(currUserName: string): void {
     this.subject.next({ name: currUserName });
   }
 
-  public getCurrUser(): Observable<User> {
+  public getUserAsObservable(): Observable<User> {
     return this.subject.asObservable(); 
   }
 
-  public getAllUsers(){
-    return this.users;
-  }
-
-  public getAllMessages(){
-    return this.messages;
+  public getMessageasAsObservable(): Observable<Message[]> {
+    return this.subjectMessages.asObservable(); 
   }
 
   public addUser(newUser: User){
@@ -59,10 +57,21 @@ export class AppService {
     else{
       this.messages.push(newMessage);
       this.saveMessages();
-    }
+    } 
+  }
+
+  editMessage(pos: number,newMessage: Message){
+    this.messages.splice(pos,1,newMessage);
+    this.saveMessages();
   }
 
   saveMessages() {
     localStorage.setItem('messages', JSON.stringify(this.messages));
+  }
+
+  delMessage(i: number){
+    this.messages = this.messages.filter((mess,index) => index!=i);
+    this.saveMessages();
+    this.subjectMessages.next(this.messages);
   }
 }

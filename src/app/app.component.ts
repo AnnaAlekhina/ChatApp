@@ -21,8 +21,8 @@ export class AppComponent {
     this._AppService = Service;
     this._router = Router;
 
-    this.subscription = this._AppService.getCurrUser()
-      .subscribe(currUserName => { this.currentUser = currUserName; });
+    this.subscription = this._AppService.getUserAsObservable()
+      .subscribe(currUser => { this.currentUser = currUser; });
   }
 
   ngOnDestroy(): void {

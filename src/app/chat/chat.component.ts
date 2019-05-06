@@ -13,6 +13,7 @@ export class ChatComponent implements OnInit {
   private _router: Router;
   private _AppService: AppService;
   private subscription: Subscription;
+  private subscriptionMessage: Subscription;
   public myMessages: Message[];
 
   public currentUser: User = null;
@@ -21,25 +22,45 @@ export class ChatComponent implements OnInit {
     text: ""
   };
 
+  private index: number;
+  private flag: boolean = false;
+
   constructor(Service: AppService, Router: Router) {
     this._AppService = Service;
     this._router = Router;
-    this.subscription = this._AppService.getCurrUser()
-      .subscribe(currUserName => { this.currentUser = currUserName; });
+    this.subscription = this._AppService.getUserAsObservable()
+      .subscribe(currUser => { this.currentUser = currUser; });
+
+    this.subscriptionMessage = this._AppService.getMessageasAsObservable()
+      .subscribe(currMessages => { this.myMessages = currMessages; });
   }
 
   ngOnInit() {
     this.message.author = this.currentUser;
-    this.myMessages = this._AppService.getAllMessages();
   }
 
-  submitHandler(event){
+  submitSendHandler(event){
     event.preventDefault();
     const newMessage: Message = {
       author: this.message.author,
       text: this.message.text
     };
-    this._AppService.addMessage(newMessage);
+    if (this.flag){
+      this._AppService.editMessage(this.index,newMessage);
+      this.flag = false;
+    }
+    else this._AppService.addMessage(newMessage);
     this.message.text = "";
+  }
+
+  clickDeleteHandler (i:number){
+    this._AppService.delMessage(i);
+  }
+
+  clickEditHandler (i:number){
+    this.flag = true;
+    this.index = i;
+    let mess: Message = this.myMessages[this.index]; //редактируемое сообщение
+    this.message.text = mess.text; //отправили данные в input через ngModel
   }
 }
