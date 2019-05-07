@@ -15,10 +15,14 @@
       </div>
       <div class="message__bubble" *ngIf="mess.author.name === currentUser.name">
         {{mess.text}}
-        <button mat-icon-button class="message__deleteButton" color="accent" (click)="clickDeleteHandler(i)" type="submit">
+        <button mat-icon-button [ngClass]="{
+          'message__deleteButton': true,
+          '--btnVisibility': flag==true
+        }" 
+        color="accent" (click)="clickDeleteHandler(i)" type="click">
             <mat-icon>clear</mat-icon>
         </button>
-        <button mat-icon-button class="message__deleteButton" color="accent" (click)="clickEditHandler(i)" type="submit">
+        <button mat-icon-button class="message__editButton" color="accent" (click)="clickEditHandler(i)" type="submit">
             <mat-icon>create</mat-icon>
         </button>
       </div>
@@ -27,12 +31,23 @@
         </div>
     </div>
   </div>
-  <form class="inputForm">
+  <form class="inputForm" (submit)="submitSendHandler($event)" >
     <mat-form-field class="inputForm__input">
       <input matInput [(ngModel)]="message.text" name="name" type="text" placeholder="Введите сообщение">
     </mat-form-field>
-    <button mat-icon-button class="inputForm__button" color="accent" (click)="submitSendHandler($event)" type="submit">
-      <mat-icon>send</mat-icon>
-    </button> 
+    <ng-container *ngIf="message.text=='' && flag; else elseTemplate">
+        <div class="inputForm__button">
+            <button mat-icon-button color="accent" type="submit">
+              <mat-icon>delete_outline</mat-icon>
+            </button> 
+          </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="inputForm__button">
+        <button mat-icon-button color="accent" type="submit">
+          <mat-icon>send</mat-icon>
+        </button> 
+      </div> 
+    </ng-template>
   </form>
 </div>

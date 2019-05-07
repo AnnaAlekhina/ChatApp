@@ -22,8 +22,8 @@ export class ChatComponent implements OnInit {
     text: ""
   };
 
-  private index: number;
-  private flag: boolean = false;
+  public index: number;
+  public flag: boolean = false;
 
   constructor(Service: AppService, Router: Router) {
     this._AppService = Service;

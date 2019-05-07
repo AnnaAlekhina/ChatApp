@@ -53,20 +53,23 @@ export class AppService {
   }
 
   addMessage(newMessage: Message){
-    if (!newMessage.text) return;
+    if (newMessage.text.search(/\S/)==-1) return;
     else{
       this.messages.push(newMessage);
       this.saveMessages();
     } 
   }
 
-  editMessage(pos: number,newMessage: Message){
-    this.messages.splice(pos,1,newMessage);
-    this.saveMessages();
-  }
-
   saveMessages() {
     localStorage.setItem('messages', JSON.stringify(this.messages));
+  }
+
+  editMessage(pos: number,newMessage: Message){
+    if (newMessage.text=="") {
+      this.delMessage(pos);
+    }
+    else this.messages.splice(pos,1,newMessage);
+    this.saveMessages();
   }
 
   delMessage(i: number){

@@ -81,6 +81,21 @@ $bgColor: #edeef0;
     width: 15px;
     height: 15px;
     line-height: 15px;
+        &.--btnVisibility{
+            visibility: hidden;
+        }
+    .mat-icon {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+    }
+  }
+
+  .mat-icon-button.message__editButton {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
 
     .mat-icon {
       font-size: 15px;
