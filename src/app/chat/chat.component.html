@@ -33,7 +33,7 @@
   </div>
   <form class="inputForm" (submit)="submitSendHandler($event)" >
     <mat-form-field class="inputForm__input">
-      <input matInput [(ngModel)]="message.text" name="name" type="text" placeholder="Введите сообщение">
+      <input matInput [(ngModel)]="message.text" name="name" type="text" [placeholder]=placeholder>
     </mat-form-field>
     <ng-container *ngIf="message.text=='' && flag; else elseTemplate">
         <div class="inputForm__button">

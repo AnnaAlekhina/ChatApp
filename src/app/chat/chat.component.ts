@@ -3,6 +3,7 @@ import { User, Message } from '../login/types/types';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-chat',
@@ -24,6 +25,7 @@ export class ChatComponent implements OnInit {
 
   public index: number;
   public flag: boolean = false;
+  public placeholder = "Введите сообщение";
 
   constructor(Service: AppService, Router: Router) {
     this._AppService = Service;
@@ -48,6 +50,7 @@ export class ChatComponent implements OnInit {
     if (this.flag){
       this._AppService.editMessage(this.index,newMessage);
       this.flag = false;
+      this.placeholder = "Введите сообщение"
     }
     else this._AppService.addMessage(newMessage);
     this.message.text = "";
@@ -60,6 +63,9 @@ export class ChatComponent implements OnInit {
   clickEditHandler (i:number){
     this.flag = true;
     this.index = i;
+
+    this.placeholder = "Редактировать сообщение";
+
     let mess: Message = this.myMessages[this.index]; //редактируемое сообщение
     this.message.text = mess.text; //отправили данные в input через ngModel
   }
