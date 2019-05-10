@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, Message } from '../login/types/types';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
+import { Subscription, observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -35,10 +34,16 @@ export class ChatComponent implements OnInit {
 
     this.subscriptionMessage = this._AppService.getMessageasAsObservable()
       .subscribe(currMessages => { this.myMessages = currMessages; });
+    
   }
 
   ngOnInit() {
     this.message.author = this.currentUser;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.subscriptionMessage.unsubscribe();
   }
 
   submitSendHandler(event){

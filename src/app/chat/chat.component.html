@@ -35,7 +35,7 @@
     <mat-form-field class="inputForm__input">
       <input matInput [(ngModel)]="message.text" name="name" type="text" [placeholder]=placeholder>
     </mat-form-field>
-    <ng-container *ngIf="message.text=='' && flag; else elseTemplate">
+    <ng-container *ngIf="message.text=='' && flag ; else elseTemplate">
         <div class="inputForm__button">
             <button mat-icon-button color="accent" type="submit">
               <mat-icon>delete_outline</mat-icon>

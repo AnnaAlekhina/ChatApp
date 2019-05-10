@@ -1,5 +1,5 @@
 import { User,Message } from './login/types/types';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from } from 'rxjs';
 
 export class AppService {
 
@@ -15,7 +15,7 @@ export class AppService {
     
     const currentUserParsed = JSON.parse(localStorage.getItem('currentUser'));
     this.currentUser = currentUserParsed ? currentUserParsed : null;
-    this.subject = new BehaviorSubject<User>(this.currentUser); // используем BehaviorSubject для возможности задать начальное значение
+    this.subject = new BehaviorSubject<User>(this.currentUser); 
 
     const messagesParsed = JSON.parse(localStorage.getItem('messages'));
     this.messages = messagesParsed ? messagesParsed : [];
@@ -57,6 +57,7 @@ export class AppService {
     else{
       this.messages.push(newMessage);
       this.saveMessages();
+      this.subjectMessages.next(this.messages);
     } 
   }
 
@@ -65,11 +66,12 @@ export class AppService {
   }
 
   editMessage(pos: number,newMessage: Message){
-    if (newMessage.text=="") {
+    if (newMessage.text==""){
       this.delMessage(pos);
     }
     else this.messages.splice(pos,1,newMessage);
     this.saveMessages();
+    this.subjectMessages.next(this.messages);
   }
 
   delMessage(i: number){
