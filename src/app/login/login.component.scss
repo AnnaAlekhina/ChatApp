@@ -1,4 +1,4 @@
-$bgColor: #edeef0;
+$bgcolor: #edeef0;
 
 .loginForm {
   text-align: center; 
@@ -9,18 +9,18 @@ $bgColor: #edeef0;
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    padding:  70px 40px 60px 40px ;
-    background-color: white;
-    border: solid 2px $bgColor;
+  background-color: #fff;
+  border: solid 2px $bgcolor;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 300px;
+  padding: 70px 40px 60px;
 
-    transition: 0.6s;
-    margin: auto;
-  }
+  transition: 0.6s;
+}
  
-  .inputContainer:hover {
-    background-color: $bgColor;
-  }
+.inputContainer:hover {
+  background-color: $bgcolor;
+}

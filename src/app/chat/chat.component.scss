@@ -1,106 +1,110 @@
-$bgColor: #edeef0;
+$bgcolor: #edeef0;
 
 .chat {
-    min-height: 700px;
-    margin: auto;
-    font-size: 15px;
-    background-color: white; 
-    padding-top: 15px;  
+  background-color: #fff;
+  font-size: 15px;
+  margin: auto;
+  min-height: 700px;
+  padding-top: 15px;  
 }
 
 .messagesBlock {
-    height: 70vh;
-    overflow-y: scroll;
-    padding: 20px;
-    border: solid 2px $bgColor;
-    border-radius: 4px;
-    margin: auto;
-    margin-bottom: 20px;
+  border: solid 2px $bgcolor;
+  border-radius: 4px;
+  height: 70vh;
+  margin: auto;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+  padding: 20px;
 }
 
 .message {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 4px;
-    color: rgb(104, 104, 104);
-    &.--currentUser{
-        align-items: flex-end;
-        color:rgb(70, 70, 240);
-            .message__bubble {
-                background-color: #d3e2ff;
-                border: solid 1px #acc7fc;
-            }
+  align-items: flex-start;
+  color: rgb(104, 104, 104);
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+
+  &.--currentUser {
+    align-items: flex-end;
+    color: rgb(70, 70, 240);
+
+    .message__bubble {
+      background-color: #d3e2ff;
+      border: solid 1px #acc7fc;
     }
+  }
 }
 
 .message__authorName {
-    font-weight: bold;
-    font-size: 17px;
-    margin: 5px 0px;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 5px 0;
 }
 
 .message__bubble {
-    background-color: $bgColor;
-    border: solid 1px #d6d7d8;
-    border-radius: 6px;
-    padding: 8px;
-    max-width: 60%;
-    word-wrap: break-word;
+  background-color: $bgcolor;
+  border: solid 1px #d6d7d8;
+  border-radius: 6px;
+  max-width: 60%;
+  padding: 8px;
+  word-wrap: break-word;
 }
 
-.inputForm { 
-    display: flex;
-    align-items: center;
-    border: solid 2px $bgColor;
-    border-radius: 4px;
-    margin-top: 10px;
-    padding: 10px;
-    margin: auto;
+.inputForm {
+  align-items: center;
+  border: solid 2px $bgcolor;
+  border-radius: 4px;
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .mat-icon-button.inputForm__button {
-    width: 30px;
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+
+  .mat-icon {
+    font-size: 30px;
     height: 30px;
     line-height: 30px;
-
-    .mat-icon {
-      font-size: 30px;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-    }
+    width: 30px;
   }
+}
 
-.inputForm__input {
-    width: 100%; 
-    padding:10px;
+.inputForm__input { 
+  padding: 10px;
+  width: 100%;
 }
 
 .mat-icon-button.message__deleteButton {
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-        &.--btnVisibility{
-            visibility: hidden;
-        }
-    .mat-icon {
-      font-size: 15px;
-      width: 15px;
-      height: 15px;
-      line-height: 15px;
-    }
+  height: 15px;
+  line-height: 15px;
+  width: 15px;
+
+  &.--btnVisibility {
+    visibility: hidden;
   }
 
-  .mat-icon-button.message__editButton {
-    width: 15px;
+  .mat-icon {
+    font-size: 15px;
     height: 15px;
     line-height: 15px;
-
-    .mat-icon {
-      font-size: 15px;
-      width: 15px;
-      height: 15px;
-      line-height: 15px;
-    }
+    width: 15px;
   }
+}
+
+.mat-icon-button.message__editButton {
+  height: 15px;
+  line-height: 15px;
+  width: 15px;
+
+  .mat-icon {
+    font-size: 15px;
+    height: 15px;
+    line-height: 15px;
+    width: 15px;
+  }
+}

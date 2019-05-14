@@ -35,15 +35,12 @@ export class AppService {
   }
 
   public addUser(newUser: User) {
-    if (!newUser.name) return;
+    if (!newUser.name) { return; }
     const foundUser = this.users.find(elem => elem.name === newUser.name);
     if (!foundUser) {
       this.users.push(newUser);
       this.currentUser = newUser;
-    }
-    else {
-      this.currentUser = foundUser;
-    }
+    } else { this.currentUser = foundUser; }
     this.saveUsers();
   }
 
@@ -53,8 +50,7 @@ export class AppService {
   }
 
   addMessage(newMessage: Message) {
-    if (newMessage.text.search(/\S/) == -1) return;
-    else {
+    if (newMessage.text.search(/\S/) === -1) { return; } else {
       this.messages.push(newMessage);
       this.saveMessages();
       this.subjectMessages.next(this.messages);
@@ -66,10 +62,9 @@ export class AppService {
   }
 
   editMessage(pos: number, newMessage: Message) {
-    if (newMessage.text == "") {
+    if (newMessage.text === '') {
       this.delMessage(pos);
-    }
-    else this.messages.splice(pos, 1, newMessage);
+    } else { this.messages.splice(pos, 1, newMessage); }
     this.saveMessages();
     this.subjectMessages.next(this.messages);
   }
