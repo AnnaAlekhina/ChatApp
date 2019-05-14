@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   public user: User = {
     name: ""
+
   };
   private _AppService: AppService;
   private _router: Router;
@@ -25,17 +26,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public goToChat(){
+  public goToChat() {
     this._router.navigate(['chat']);
   }
 
-  submitHandler(event){
+  submitHandler(event) {
     event.preventDefault();
     const newUser: User = {
       name: this.user.name,
     };
     if (this.user.name == "") return;
-    if (newUser.name.search(/\S/)==-1) return;
+    if (newUser.name.search(/\S/) == -1) return;
     this._AppService.addUser(newUser);
     this.user.name = '';
     this.goToChat();
