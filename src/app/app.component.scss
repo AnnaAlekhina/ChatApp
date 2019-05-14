@@ -1,23 +1,23 @@
-.header{
-    width: 100%; 
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #3f51b5;
-    z-index: 1;
-    padding: 3px 25px;
-    color:white;
-    font-size: 15px;
-    top: 0;
+.header {
+  align-items: center;
+  background-color: #3f51b5;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
+  justify-content: space-between;
+  padding: 3px 25px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
-.homePage{
-    max-width: 500px;
-    margin: auto;
-    background: white;
-    min-height: 600px;
-    border-radius: 4px;
-    padding: 20px;
-    margin-top: 80px;
+.homePage {
+  background: #fff;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 80px;
+  max-width: 500px;
+  min-height: 600px;
+  padding: 20px;
 }

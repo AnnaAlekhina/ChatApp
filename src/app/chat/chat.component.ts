@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User, Message } from '../login/types/types';
-import { AppService } from '../app.service';
 import { Router } from '@angular/router';
-import { Subscription, observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { AppService } from '../app.service';
+import { Message, User } from '../login/types/types';
 
 @Component({
   selector: 'app-chat',
@@ -19,59 +19,57 @@ export class ChatComponent implements OnInit {
   public currentUser: User = null;
   public message: Message = {
     author: null,
-    text: ""
+    text: ''
   };
 
   public index: number;
-  public flag: boolean = false;
-  public placeholder = "Введите сообщение";
+  public flag = false;
+  public placeholder = 'Введите сообщение';
 
-  constructor(Service: AppService, Router: Router) {
+  constructor(Service: AppService, AppRouter: Router) {
     this._AppService = Service;
-    this._router = Router;
+    this._router = AppRouter;
     this.subscription = this._AppService.getUserAsObservable()
       .subscribe(currUser => { this.currentUser = currUser; });
 
     this.subscriptionMessage = this._AppService.getMessageasAsObservable()
       .subscribe(currMessages => { this.myMessages = currMessages; });
-    
   }
 
   ngOnInit() {
     this.message.author = this.currentUser;
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
     this.subscriptionMessage.unsubscribe();
   }
 
-  submitSendHandler(event){
+  submitSendHandler(event) {
     event.preventDefault();
     const newMessage: Message = {
       author: this.message.author,
       text: this.message.text
     };
-    if (this.flag){
-      this._AppService.editMessage(this.index,newMessage);
+    if (this.flag) {
+      this._AppService.editMessage(this.index, newMessage);
       this.flag = false;
-      this.placeholder = "Введите сообщение"
-    }
-    else this._AppService.addMessage(newMessage);
-    this.message.text = "";
+      this.placeholder = 'Введите сообщение';
+    } else { this._AppService.addMessage(newMessage); }
+    this.message.text = '';
   }
 
-  clickDeleteHandler (i:number){
+  clickDeleteHandler(i: number) {
     this._AppService.delMessage(i);
   }
 
-  clickEditHandler (i:number){
+  clickEditHandler(i: number) {
     this.flag = true;
     this.index = i;
 
-    this.placeholder = "Редактировать сообщение";
+    this.placeholder = 'Редактировать сообщение';
 
-    let mess: Message = this.myMessages[this.index]; //редактируемое сообщение
-    this.message.text = mess.text; //отправили данные в input через ngModel
+    const mess: Message = this.myMessages[this.index];
+    this.message.text = mess.text;
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { User } from './types/types';
-import { AppService } from '../app.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppService } from '../app.service';
+import { User } from './types/types';
 
 @Component({
   selector: 'app-login',
@@ -12,30 +12,30 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public user: User = {
-    name: ""
+    name: ''
   };
   private _AppService: AppService;
   private _router: Router;
 
-  constructor(Service: AppService, Router: Router) {
+  constructor(Service: AppService, AppRouter: Router) {
     this._AppService = Service;
-    this._router = Router;
+    this._router = AppRouter;
   }
 
   ngOnInit() {
   }
 
-  public goToChat(){
+  public goToChat() {
     this._router.navigate(['chat']);
   }
 
-  submitHandler(event){
+  submitHandler(event) {
     event.preventDefault();
     const newUser: User = {
       name: this.user.name,
     };
-    if (this.user.name == "") return;
-    if (newUser.name.search(/\S/)==-1) return;
+    if (this.user.name === '') { return; }
+    if (newUser.name.search(/\S/) === -1) { return; }
     this._AppService.addUser(newUser);
     this.user.name = '';
     this.goToChat();
